@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# This project is a work in progress. Everything is subject to change. Do not use this in production.
 
-## Getting Started
+<div align="center">
+  <h1>Issue Tracker</h1>
+  <a href="https://www.prisma.io/docs/getting-started">Get started</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://discord.gg/djsjvQ6VNE">Discord</a>
+  <hr />
+</div>
 
-First, run the development server:
+## 👋 Welcome
+
+This project was made to create a simple issue tracker for any type of project. It aims to be user friendly and easy to use supporting more than 80 ways to log in using different providers.
+
+## 🔨 Getting started
+
+### Preparing the database
+
+This project is based around [PostgreSQL](https://www.postgresql.org). You can setup a local database or a remote one depending on your needs. You can find the downloads for local deployment [here](https://www.postgresql.org/download/).
+
+### Getting dependencies
+
+Make sure you have [Node.js](https://nodejs.org/en/) installed on your machine.
+
+### Clone the project
+
+```bash
+git clone https://github.com/kragleh/issue-tracker.git
+```
+
+### Setup environment variables
+
+```bash
+cp .env.example .env
+```
+
+Set the corresponding values in the `.env` file. If not happy with the default provider, you can [add a new sign in provider](#📋-adding-a-new-sign-in-provider).
+
+### Install dependencies
+
+```bash
+npm install
+
+# For production purposes
+npm install -g pm2
+```
+
+### Generate dependencies
+
+```bash
+npx prisma generate
+```
+
+### Create database structure
+
+```bash
+npx prisma db push
+```
+
+### Run the project in development mode
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then head to [http://localhost:3000](http://localhost:3000) and make sure everything is working.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Run the project in production mode
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run build
 
-## Learn More
+# To run in the command line temporarily
+npm run start
 
-To learn more about Next.js, take a look at the following resources:
+# To run in the background 24/7
+pm2 start npm --name issue-tracker -- run start
+pm2 save
+pm2 startup
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📋 Adding a new sign in provider
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To add a new sign in provider, head [here](https://authjs.dev/getting-started/authentication/oauth) search for the provider you are looking for and follow the steps. To remove a provider, you can simply remove the provider from the `providers` array in the `auth.ts` file and the corresponding values in the `.env` file.

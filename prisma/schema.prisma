@@ -1,0 +1,179 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Auth Data
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Application Data
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  role          Role      @default(USER)
+
+  issues        Issue[]
+  issueMessages IssueMessage[]
+  projectRoles  ProjectRole[]
+
+  starredProjects Project[] @relation(name: "projectStars")
+  memberOf Project[] @relation(name: "projectmember")
+  ownerOf Project[] @relation(name: "projectowner")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Role used for application settings & data
+enum Role {
+  ADMIN
+  USER
+}
+
+// Tag used for issues in a project
+model Tag {
+  id    String @id @default(cuid())
+  title String
+  color String
+
+  project Project @relation(fields: [projectId], references: [id])
+  projectId String
+  issues Issue[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Project used for issues
+model Project {
+  id          String  @id @default(cuid())
+  title       String
+  description String
+  icon        String?
+  public      Boolean  @default(false)
+  stars       User[]   @relation(name: "projectStars")
+
+  ownerId     String
+  owner User @relation(name: "projectowner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  projectInivites ProjectInvite[]
+  projectRoles ProjectRole[]
+  members     User[] @relation(name: "projectmember")
+  tags        Tag[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProjectInvite {
+  id          String  @id @default(cuid())
+  uses        Int
+  projectId   String
+  project     Project @relation(fields: [projectId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Issue of a project
+model Issue {
+  id          String         @id @default(cuid())
+  title       String
+  description String
+  tags        Tag[]
+  messages    IssueMessage[]
+
+  ownerId     String
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Message object for discussing the issue
+model IssueMessage {
+  id      String @id @default(cuid())
+  message String
+
+  issueId String
+  issue Issue @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  
+  ownerId String
+  user  User  @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Role used for managing projects in a team
+model ProjectRole {
+  id          String           @id @unique @default(cuid())
+  name        String           @unique
+  color       String           @unique
+  weight      Int              @default(0)
+  permissions RolePermission[]
+
+  project   Project @relation(fields: [projectId], references: [id])
+  User      User[]
+  projectId String
+}
+
+// Role permission to manage role power
+enum RolePermission {
+  CREATE_ISSUE
+  CREATE_TAG
+  DELETE_ISSUE
+  DELETE_TAG
+  EDIT_ISSUE
+  EDIT_TAG
+  VIEW_ISSUE
+  VIEW_TAG
+}
