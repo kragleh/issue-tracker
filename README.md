@@ -2,7 +2,7 @@
 
 <div align="center">
   <h1>Issue Tracker</h1>
-  <a href="https://www.prisma.io/docs/getting-started">Get started</a>
+  <a href="#🔨-getting-started">Get started</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://discord.gg/djsjvQ6VNE">Discord</a>
   <hr />
