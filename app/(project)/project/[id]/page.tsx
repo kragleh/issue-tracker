@@ -2,11 +2,12 @@ import React from 'react'
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 import ProjectDescription from '@/components/project/ProjectDescription'
-import ProfilePicture from '@/components/misc/ProfilePicture'
 import Footer from '@/components/nav/Footer'
 import ProjectHeader from '@/components/project/nav/ProjectHeader'
 import ProjectPicture from '@/components/misc/ProjectPicture'
 import { PrismaClient } from '@prisma/client'
+import ProjectOwnerCard from '@/components/project/home/ProjectOwnerCard'
+import Link from 'next/link'
 
 const prisma = new PrismaClient()
 
@@ -32,7 +33,19 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
         </>
       } rightSide={ 
         <>
-          
+          <div className='flex items-center gap-2'>
+            <Link href={'/project/' + params.id + '/issues'}>
+              Issues
+            </Link>
+            {/* TODO: Show link for corresponding roles */}
+            {
+              user.id === project.owner.id ? 
+                <Link href={'/project/' + params.id + '/Settings'}>
+                  Settings
+                </Link>
+              : <></>
+            }
+          </div>
         </>
       } />
 
@@ -42,18 +55,7 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
             <ProjectDescription project={ project } />
           </div>
           <div className='w-full'>
-            <section className='
-              bg-neutral-100 dark:bg-neutral-900 
-              border border-neutral-300 dark:border-neutral-700 
-              flex flex-row gap-4
-              p-4 rounded-xl lg:mr-4
-            '>
-              <ProfilePicture user={ project.owner } size={ 48 } />
-              <div className='flex flex-col justify-center'>
-                <h1 className='text-xl font-semibold'>Owner</h1>
-                <p className='text-sm'>{ project.owner.name }</p>
-              </div>
-            </section>
+            <ProjectOwnerCard user={ project.owner } />
           </div>
         </div>
         <Footer className='mt-4 w-full text-center' />

@@ -2,7 +2,7 @@
 
 <div align="center">
   <h1>Issue Tracker</h1>
-  <a href="#🔨-getting-started">Get started</a>
+  <a href="#getting_started">Get started</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://discord.gg/djsjvQ6VNE">Discord</a>
   <hr />
@@ -11,6 +11,19 @@
 ## 👋 Welcome
 
 This project was made to create a simple issue tracker for any type of project. It aims to be user friendly and easy to use supporting more than 80 ways to log in using different providers.
+
+## 📋 TODO
+
+- [ ] Admin related features
+- [ ] Project related features
+- [ ] Home page
+- [ ] Issues page
+- [ ] Profile page
+- [x] Theme switch
+- [x] Auth
+
+
+<a name="getting_started"></a>
 
 ## 🔨 Getting started
 

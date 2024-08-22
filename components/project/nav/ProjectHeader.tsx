@@ -8,13 +8,15 @@ const ProjectHeader = ({
   rightSide?: React.ReactNode,
 }) => {
   return (
-    <section className='border-b border-neutral-300 dark:border-neutral-700 p-2 flex justify-between items-center'>
-      <div className='flex items-center gap-2 ml-2'>
-        { leftSide }
-      </div>
-      
-      <div className='flex items-center gap-2 mr-2'>
-        { rightSide }
+    <section className='border-b border-neutral-300 dark:border-neutral-700 p-2'>
+      <div className='max-w-4xl w-full mx-auto flex justify-between items-center'>
+        <div className='flex items-center gap-2 ml-2'>
+          { leftSide }
+        </div>
+        
+        <div className='flex items-center gap-2 mr-2'>
+          { rightSide }
+        </div>
       </div>
     </section>
   )
