@@ -3,7 +3,7 @@ import NewProjectForm from '@/components/form/NewProjectForm'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
-const NewProject = async () => {
+const NewProjectPage = async () => {
   const session = await auth()
   const user = session?.user
 
@@ -14,4 +14,4 @@ const NewProject = async () => {
   )
 }
 
-export default NewProject
+export default NewProjectPage

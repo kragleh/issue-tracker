@@ -1,6 +1,9 @@
 import { auth } from '@/auth'
-import prisma from '@/lib/Prisma'
 import React from 'react'
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
 
 const AdminLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth()

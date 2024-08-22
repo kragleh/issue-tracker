@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CardLayout = ({ children, className }: { children: React.ReactNode, className?: string }) => {
+const Card = ({ children, className }: { children: React.ReactNode, className?: string }) => {
   return (
     <section className={`
       bg-neutral-100 dark:bg-neutral-900 
@@ -12,4 +12,4 @@ const CardLayout = ({ children, className }: { children: React.ReactNode, classN
   )
 }
 
-export default CardLayout
+export default Card

@@ -1,19 +1,18 @@
 import { auth } from '@/auth'
 import SidebarHeaderLayout from '@/components/layout/SidebarHeaderLayout'
 import ProjectPicture from '@/components/misc/ProjectPicture'
+import AdminSidebarMenu from '@/components/nav/AdminSidebarMenu'
 import SidebarButton from '@/components/nav/SidebarButton'
+import SidebarGroup from '@/components/nav/SidebarGroup'
 import { redirect } from 'next/navigation'
 import React from 'react'
-import { BsGraphUp, BsPeopleFill } from 'react-icons/bs'
 import { FaHome, FaPlus } from 'react-icons/fa'
 import { MdChecklist } from 'react-icons/md'
 import { PrismaClient } from '@prisma/client'
-import SidebarGroup from '@/components/nav/SidebarGroup'
 
 const prisma = new PrismaClient()
 
-
-const HomeLayout = async ({ children }: { children: React.ReactNode }) => {
+const ProjectPageLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth()
   const user = session?.user
 
@@ -37,7 +36,7 @@ const HomeLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <SidebarHeaderLayout 
+      <SidebarHeaderLayout
         user={ user }
         sidebarContent={ 
           <>
@@ -56,12 +55,7 @@ const HomeLayout = async ({ children }: { children: React.ReactNode }) => {
             </SidebarGroup>
 
             {
-              userObj && userObj.role === 'ADMIN' && (<>
-                <SidebarGroup title='Admin'>
-                  <SidebarButton icon={ <BsPeopleFill size={ 24 } /> } title='Users' href='/admin/users' />
-                  <SidebarButton icon={ <BsGraphUp size={ 24 } /> } title='Stats' href='/admin/stats' />
-                </SidebarGroup>
-              </>)
+              userObj && userObj.role === 'ADMIN' && (<AdminSidebarMenu />)
             }
           </> 
         }>
@@ -71,4 +65,4 @@ const HomeLayout = async ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default HomeLayout
+export default ProjectPageLayout

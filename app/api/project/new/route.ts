@@ -1,6 +1,8 @@
 import { auth } from "@/auth"
-import prisma from "@/lib/Prisma"
 import { z } from "zod"
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 const bodySchema = z.object({
   title: z.string().min(1).max(100),
