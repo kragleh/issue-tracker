@@ -3,9 +3,7 @@ import Footer from '@/components/nav/Footer'
 import Card from '@/components/ui/Card'
 import { redirect } from 'next/navigation'
 import React from 'react'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { db } from '@/lib/db'
 
 const IssuesPage = async () => {
   const session = await auth()
@@ -13,7 +11,7 @@ const IssuesPage = async () => {
 
   if (!user) redirect('/login?r=/issues')
 
-  const issues = await prisma.issue.findMany({
+  const issues = await db.issue.findMany({
     take: 10,
     where: {
       ownerId: user.id,

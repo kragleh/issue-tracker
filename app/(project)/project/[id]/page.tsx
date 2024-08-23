@@ -5,11 +5,9 @@ import ProjectDescription from '@/components/project/ProjectDescription'
 import Footer from '@/components/nav/Footer'
 import ProjectHeader from '@/components/project/nav/ProjectHeader'
 import ProjectPicture from '@/components/misc/ProjectPicture'
-import { PrismaClient } from '@prisma/client'
 import ProjectOwnerCard from '@/components/project/home/ProjectOwnerCard'
 import Link from 'next/link'
-
-const prisma = new PrismaClient()
+import { db } from '@/lib/db'
 
 const ProjectPage = async ({ params }: { params: { id: string } }) => {
   const session = await auth()
@@ -17,7 +15,7 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
 
   if (!user) redirect('/signin?r=/project/' + params.id)
 
-  const project = await prisma.project.findUnique({ where: { id: params.id }, include: { members: true, owner: true } })
+  const project = await db.project.findUnique({ where: { id: params.id }, include: { members: true, owner: true } })
 
   if (!project) redirect('/')
   if (!project.members.some(member => member.id === user.id)) redirect('/') // User is not a member of the project
