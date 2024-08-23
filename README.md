@@ -12,17 +12,6 @@
 
 This project was made to create a simple issue tracker for any type of project. It aims to be user friendly and easy to use supporting more than 80 ways to log in using different providers.
 
-## 📋 TODO
-
-- [ ] Admin related features
-- [ ] Project related features
-- [ ] Home page
-- [ ] Issues page
-- [x] Profile page
-- [x] Theme switch
-- [x] Auth
-
-
 <a name="getting_started"></a>
 
 ## 🔨 Getting started
@@ -92,6 +81,39 @@ pm2 save
 pm2 startup
 ```
 
-## 📋 Adding a new sign in provider
+## 🖊️ Adding a new sign in provider
 
 To add a new sign in provider, head [here](https://authjs.dev/getting-started/authentication/oauth) search for the provider you are looking for and follow the steps. To remove a provider, you can simply remove the provider from the `providers` array in the `auth.ts` file and the corresponding values in the `.env` file.
+
+## 📋 TODO
+
+Project features
+  - [ ] Project page
+  - [ ] Project issues
+    - [ ] View issues
+    - [ ] Create issues
+  - [ ] Project roles
+  - [ ] Project settings
+
+Admin features
+  - [ ] Dashboard page
+  - [ ] User page
+    - [ ] View users
+    - [ ] Manage users
+  - [ ] Projects page
+    - [ ] View projects
+    - [ ] Manage projects
+  - [ ] Issues page
+    - [ ] View issues
+    - [ ] Manage issues
+
+Other
+  - [ ] Home page
+  - [ ] Issues page
+  - [x] Profile page
+  - [x] Theme switch
+  - [x] Auth
+
+## 🤝 Contributing
+
+Feel free to contribute to this project by opening an issue or a pull request.
