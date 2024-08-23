@@ -1,7 +1,7 @@
 import { auth } from '@/auth'
 import SidebarHeaderLayout from '@/components/layout/SidebarHeaderLayout'
 import ProjectPicture from '@/components/misc/ProjectPicture'
-import AdminSidebarMenu from '@/components/nav/AdminSidebarMenu'
+import AdminSidebarMenu from '@/components/nav/groups/AdminSidebarGroup'
 import SidebarButton from '@/components/nav/SidebarButton'
 import SidebarGroup from '@/components/nav/SidebarGroup'
 import { redirect } from 'next/navigation'

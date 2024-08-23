@@ -1,8 +1,10 @@
 import React from 'react'
 
-const NewProjectLayout = () => {
+const NewProjectLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>NewProjectLayout</div>
+    <>
+      { children }
+    </>
   )
 }
 

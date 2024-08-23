@@ -18,7 +18,7 @@ This project was made to create a simple issue tracker for any type of project. 
 - [ ] Project related features
 - [ ] Home page
 - [ ] Issues page
-- [ ] Profile page
+- [x] Profile page
 - [x] Theme switch
 - [x] Auth
 

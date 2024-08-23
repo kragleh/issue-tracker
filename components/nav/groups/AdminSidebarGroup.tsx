@@ -1,9 +1,9 @@
 import React from 'react'
-import SidebarGroup from './SidebarGroup'
-import SidebarButton from './SidebarButton'
+import SidebarGroup from '../SidebarGroup'
+import SidebarButton from '../SidebarButton'
 import { BsGraphUp, BsPeopleFill } from 'react-icons/bs'
 
-const AdminSidebarMenu = () => {
+const AdminSidebarGroup = () => {
   return (
     <SidebarGroup title='Admin'>
       <SidebarButton icon={ <BsPeopleFill size={ 24 } /> } title='Users' href='/admin/users' />
@@ -12,4 +12,4 @@ const AdminSidebarMenu = () => {
   )
 }
 
-export default AdminSidebarMenu
+export default AdminSidebarGroup
