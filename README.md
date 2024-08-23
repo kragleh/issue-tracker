@@ -97,8 +97,9 @@ Project features
 
 Admin features
   - [ ] Dashboard page
-  - [ ] User page
-    - [ ] View users
+  - [x] User page
+    - [x] View users
+      - [ ] Add pagination
     - [ ] Manage users
   - [ ] Projects page
     - [ ] View projects
