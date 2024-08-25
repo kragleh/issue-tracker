@@ -8,6 +8,8 @@ import ProjectPicture from '@/components/misc/ProjectPicture'
 import ProjectOwnerCard from '@/components/project/home/ProjectOwnerCard'
 import Link from 'next/link'
 import { db } from '@/lib/db'
+import LinkButton from '@/components/ui/LinkButton'
+import ProjectTitle from '@/components/project/nav/ProjectTitle'
 
 const ProjectPage = async ({ params }: { params: { id: string } }) => {
   const session = await auth()
@@ -24,23 +26,23 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
     <>
       <ProjectHeader leftSide={ 
         <>
-          <div className='flex gap-2 items-center'>
-            <ProjectPicture project={ project } size={ 32 } />
-            <h1>{ project.title }</h1>
-          </div>
+          <ProjectTitle project={ project } />
         </>
       } rightSide={ 
         <>
           <div className='flex items-center gap-2'>
-            <Link href={'/project/' + params.id + '/issues'}>
+            <LinkButton href={'/project/' + params.id + '/issues'}>
               Issues
-            </Link>
+            </LinkButton>
+            <LinkButton href={'/project/' + params.id + '/members'}>
+              Members
+            </LinkButton>
             {/* TODO: Show link for corresponding roles */}
             {
               user.id === project.owner.id ? 
-                <Link href={'/project/' + params.id + '/Settings'}>
+                <LinkButton href={'/project/' + params.id + '/Settings'}>
                   Settings
-                </Link>
+                </LinkButton>
               : <></>
             }
           </div>

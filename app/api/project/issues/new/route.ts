@@ -3,8 +3,9 @@ import { db } from "@/lib/db"
 import { z } from "zod"
 
 const bodySchema = z.object({
+  projectId: z.string().min(1).max(100),
   title: z.string().min(1).max(100),
-  description: z.string().min(1).max(2048),
+  content: z.string().min(1).max(2048),
 })
 
 export const POST = async (request: Request) => {
@@ -26,24 +27,24 @@ export const POST = async (request: Request) => {
     return Response.json({ message: 'Invalid request data' }, { status: 400 })
   }
 
-  const project = await db.project.create({
+  const project = await db.project.findFirst({ where: { id: body.projectId }, include: { members: true } })
+
+  if (!project) return Response.json({ message: 'Project not found' }, { status: 400 })
+  if (project.members.find(member => member.id !== user.id)) return Response.json({ message: 'You are not a member of this project' }, { status: 400 })
+
+  const issue = await db.issue.create({
     data: {
-      ownerId: user.id,
+      projectId: project.id,
       title: body.title,
-      description: body.description,
+      ownerId: user.id,
     }
   })
 
-  await db.project.update({
-    where: {
-      id: project.id
-    },
+  await db.issueMessage.create({
     data: {
-      members: {
-        connect: {
-          id: user.id
-        }
-      }
+      issueId: issue.id,
+      message: body.content,
+      ownerId: user.id,
     }
   })
 

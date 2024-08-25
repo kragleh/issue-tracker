@@ -108,6 +108,7 @@ model Project {
   projectRoles ProjectRole[]
   members     User[] @relation(name: "projectmember")
   tags        Tag[]
+  issues Issue[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -127,9 +128,12 @@ model ProjectInvite {
 model Issue {
   id          String         @id @default(cuid())
   title       String
-  description String
+  opened      Boolean        @default(true)
   tags        Tag[]
   messages    IssueMessage[]
+
+  projectId   String
+  project     Project        @relation(fields: [projectId], references: [id])
 
   ownerId     String
   owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)

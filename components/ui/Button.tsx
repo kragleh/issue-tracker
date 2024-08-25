@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 
-enum ButtonVariant {
+export enum ButtonVariant {
   SUCCESS,
   DANGER,
   WARNING

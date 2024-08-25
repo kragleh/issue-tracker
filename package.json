@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.2",
     "@prisma/client": "^5.18.0",
+    "@uiw/react-md-editor": "^4.0.4",
     "marked": "^14.0.0",
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.20",

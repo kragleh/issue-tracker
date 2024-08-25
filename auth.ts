@@ -1,10 +1,8 @@
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
 import NextAuth from "next-auth"
 import Roblox from "./lib/RobloxProvider"
 import { Provider } from "next-auth/providers"
-
-const prisma = new PrismaClient()
+import { db } from "./lib/db"
 
 const providers: Provider[] = [
   Roblox({
@@ -23,7 +21,7 @@ export const providerMap = providers.map((provider) => {
 })
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(db),
   providers,
   pages: {
     signIn: "/signin",

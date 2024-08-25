@@ -19,7 +19,7 @@ const LinkButton = ({ children, className, onCLick, variant, href }: { children:
   }
 
   return (
-    <Link href={ href } className={`text-neutral-700 dark:text-neutral-300 duration-200 text-center py-1 rounded ` + className} onClick={ onCLick }>
+    <Link href={ href } className={`text-neutral-700 dark:text-neutral-300 duration-200 text-center py-1 px-2 rounded ` + className} onClick={ onCLick }>
       { children }
     </Link>
   )
