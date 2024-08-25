@@ -1,5 +1,5 @@
 import { auth } from '@/auth'
-import ProfilePicture from '@/components/misc/ProfilePicture'
+import ProfilePicture from '@/components/ui/ProfilePicture'
 import BackButton from '@/components/ui/BackButton'
 import Card from '@/components/ui/Card'
 import SignOutButton from '@/components/ui/SignOutButton'

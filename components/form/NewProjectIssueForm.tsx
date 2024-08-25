@@ -5,7 +5,6 @@ import MDEditor from '@uiw/react-md-editor'
 import Footer from '../nav/Footer'
 import Button, { ButtonVariant } from '../ui/Button'
 import { Tag } from '@prisma/client'
-import { redirect } from 'next/navigation'
 
 const NewProjectIssueForm = ({ projectId }: { projectId: string }) => {
   const [error, setError] = React.useState<string | undefined>(undefined)

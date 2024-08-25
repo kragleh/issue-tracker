@@ -1,4 +1,4 @@
-import ProfilePicture from '@/components/misc/ProfilePicture'
+import ProfilePicture from '@/components/ui/ProfilePicture'
 import LinkButton, { LinkButtonVariant } from '@/components/ui/LinkButton'
 import { User } from '@prisma/client'
 import React from 'react'

@@ -1,4 +1,4 @@
-import ProfilePicture from '@/components/misc/ProfilePicture'
+import ProfilePicture from '@/components/ui/ProfilePicture'
 import { Project, User } from '@prisma/client'
 import React from 'react'
 

@@ -1,5 +1,6 @@
 import { auth } from "@/auth"
 import { db } from "@/lib/db"
+import { IssueMessageType } from "@prisma/client"
 import { z } from "zod"
 
 const bodySchema = z.object({
@@ -45,6 +46,7 @@ export const POST = async (request: Request) => {
       issueId: issue.id,
       message: body.content,
       ownerId: user.id,
+      type: IssueMessageType.USER,
     }
   })
 

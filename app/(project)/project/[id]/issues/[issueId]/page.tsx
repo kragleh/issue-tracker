@@ -1,38 +1,38 @@
 import { auth } from '@/auth'
-import IssueCard from '@/components/issue/IssueCard'
 import Footer from '@/components/nav/Footer'
+import ProjectOwnerCard from '@/components/project/home/ProjectOwnerCard'
 import ProjectHeader from '@/components/project/nav/ProjectHeader'
 import ProjectTitle from '@/components/project/nav/ProjectTitle'
-import Card from '@/components/ui/Card'
-import LinkButton, { LinkButtonVariant } from '@/components/ui/LinkButton'
+import BackButton from '@/components/ui/BackButton'
+import IssueMessage from '@/components/ui/IssueMessage'
+import IssueStatusIcon from '@/components/ui/IssueStatusIcon'
+import LinkButton from '@/components/ui/LinkButton'
+import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
-const ProjectIssues = async ({ params }: { params: { id: string } }) => {
+const ProjectIssuePage = async ({ params }: { params: { id: string, issueId: string } }) => {
   const session = await auth()
   const user = session?.user
 
-  if (!user) redirect('/login?r=/project/' + params.id + '/issues')
+  if (!user) redirect('/login?r=/project/' + params.id + '/issues/' + params.issueId)
 
   const project = await db.project.findUnique({ where: { id: params.id }, include: { owner: true } })
 
   if (!project) throw new Error('Project not found')
 
-  const issues = await db.issue.findMany({
-    take: 10,
+  const issue = await db.issue.findFirst({
     include: {
-      project: true,
       messages: true,
       owner: true,
     },
     where: {
-      projectId: params.id,
-    },
-    orderBy: {
-      createdAt: 'desc',
+      id: params.issueId,
     },
   })
+
+  if (!issue) throw new Error('Issue not found')
 
   return (
     <>
@@ -61,28 +61,26 @@ const ProjectIssues = async ({ params }: { params: { id: string } }) => {
         </>
       } />
 
-      <main className='w-full max-w-4xl mx-auto p-4'>
-        <section className='pb-4 flex justify-between items-center'>
-          <h1 className='text-2xl'>Issues</h1>
-          <LinkButton href={'/project/' + params.id + '/issues/new'} variant={ LinkButtonVariant.SUCCESS }>
-            New
-          </LinkButton>
+      <main className='w-full max-w-4xl mx-auto p-4 flex flex-col gap-4'>
+        <section className='flex justify-between items-center'>
+          <h1 className='text-2xl flex gap-2 items-center'>
+            <IssueStatusIcon opened={ issue.opened } size={ 24 } />
+            { issue.title }
+          </h1>
+          <BackButton />
         </section>
-        <Card>
-          {
-            issues.length > 0 ?
-            issues.map((issue) => (
-              <IssueCard key={issue.id} issue={ issue } owner={ issue.owner.name } messages={ issue.messages.length } />
-            ))
-            :
-            <>
-              <div className='text-center p-4'>
-                <h1 className='text-xl'>Welcome to issues!</h1>
-                <p className='text-neutral-700 dark:text-neutral-300'>Here you can find all the issues related to this project.</p>
-              </div>
-            </>
-          }
-        </Card>
+        <div className='grid grid-cols-1 lg:grid-cols-[70%_30%] gap-4'>
+          <div className='flex flex-col gap-4'>
+            {
+              issue.messages.map(message => (
+                <IssueMessage key={ message.id } message={ message } />
+              ))
+            }
+          </div>
+          <div className='w-full'>
+            <ProjectOwnerCard user={ project.owner } />
+          </div>
+        </div>
         <Footer className='mt-4 w-full text-center' />
       </main>
     </>
@@ -90,4 +88,4 @@ const ProjectIssues = async ({ params }: { params: { id: string } }) => {
   )
 }
 
-export default ProjectIssues
+export default ProjectIssuePage

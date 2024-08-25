@@ -1,7 +1,7 @@
 "use client"
 import { User } from 'next-auth'
 import React from 'react'
-import ProfilePicture from '../misc/ProfilePicture'
+import ProfilePicture from '../ui/ProfilePicture'
 import { MdArrowDropDown } from 'react-icons/md'
 import Link from 'next/link'
 import { signOut } from 'next-auth/react'
