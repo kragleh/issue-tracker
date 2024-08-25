@@ -94,6 +94,13 @@ Project features
     - [ ] Create issues
   - [ ] Project roles
   - [ ] Project settings
+  - [x] View project issues
+
+Issue features
+  - [x] Create issue
+  - [ ] View issue
+  - [ ] Add messages
+  - [ ] Manage issue
 
 Admin features
   - [ ] Dashboard page
@@ -111,6 +118,8 @@ Admin features
 Other
   - [ ] Home page
   - [ ] Issues page
+    - [x] Basic view
+    - [ ] Filter enhancement
   - [x] Profile page
   - [x] Theme switch
   - [x] Auth
