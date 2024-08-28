@@ -3,6 +3,7 @@ import { IssueMessage, IssueMessageType } from '@prisma/client'
 import React from 'react'
 import Card from './Card'
 import ProfilePicture from './ProfilePicture'
+import MarkdownRenderer from './MarkdownRenderer'
 
 const IssueMessage = async ({ message }: { message: IssueMessage }) => {
   if (message.type === IssueMessageType.SYSTEM) {
@@ -24,7 +25,10 @@ const IssueMessage = async ({ message }: { message: IssueMessage }) => {
       <div className='flex gap-2 items-center p-2'>
         <ProfilePicture user={ owner } size={ 16 } />
         <h1>{ owner.name }</h1>
-        <p>at { new Date(message.createdAt).toLocaleString() }</p>
+        <p className='opacity-50 text-xs'>{ new Date(message.createdAt).toLocaleString() }</p>
+      </div>
+      <div className='bg-neutral-200 dark:bg-neutral-900 p-2 pt-0 rounded-b-2xl'>
+        <MarkdownRenderer content={ message.message } />
       </div>
     </Card>
   )

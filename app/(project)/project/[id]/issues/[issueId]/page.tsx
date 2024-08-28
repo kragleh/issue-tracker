@@ -1,4 +1,5 @@
 import { auth } from '@/auth'
+import NewProjectIssueMessageForm from '@/components/form/NewProjectIssueMessageForm'
 import Footer from '@/components/nav/Footer'
 import ProjectOwnerCard from '@/components/project/home/ProjectOwnerCard'
 import ProjectHeader from '@/components/project/nav/ProjectHeader'
@@ -76,6 +77,7 @@ const ProjectIssuePage = async ({ params }: { params: { id: string, issueId: str
                 <IssueMessage key={ message.id } message={ message } />
               ))
             }
+            <NewProjectIssueMessageForm projectId={ project.id } issueId={ issue.id } />
           </div>
           <div className='w-full'>
             <ProjectOwnerCard user={ project.owner } />
