@@ -20,7 +20,7 @@ const IssuesPage = async () => {
     where: {
       OR: [
         { ownerId: user.id },
-        { project: { members: { some: { id: user.id } } } },
+        { messages: { some: { ownerId: user.id } } },
       ]
     },
     orderBy: {
