@@ -3,11 +3,15 @@ import NextAuth from "next-auth"
 import Roblox from "./lib/RobloxProvider"
 import { Provider } from "next-auth/providers"
 import { db } from "./lib/db"
+import GitHub from "next-auth/providers/github"
 
 const providers: Provider[] = [
   Roblox({
     clientId: process.env.ROBLOX_CLIENT_ID,
     clientSecret: process.env.ROBLOX_CLIENT_SECRET,
+  }),
+  GitHub({
+    redirectProxyUrl: process.env.AUTH_GITHUB_REDIRECT
   })
 ]
 
