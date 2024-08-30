@@ -117,9 +117,7 @@ Admin features
 
 Other
   - [ ] Home page
-  - [ ] Issues page
-    - [x] Basic view
-    - [ ] Filter enhancement
+  - [x] Issues page
   - [x] Profile page
   - [x] Theme switch
   - [x] Auth

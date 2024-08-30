@@ -1,9 +1,8 @@
 import { auth } from '@/auth'
-import IssueCard from '@/components/issue/IssueCard'
+import IssuesView from '@/components/issue/IssuesView'
 import Footer from '@/components/nav/Footer'
 import ProjectHeader from '@/components/project/nav/ProjectHeader'
 import ProjectTitle from '@/components/project/nav/ProjectTitle'
-import Card from '@/components/ui/Card'
 import LinkButton, { LinkButtonVariant } from '@/components/ui/LinkButton'
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
@@ -20,7 +19,6 @@ const ProjectIssues = async ({ params }: { params: { id: string } }) => {
   if (!project) throw new Error('Project not found')
 
   const issues = await db.issue.findMany({
-    take: 10,
     include: {
       project: true,
       messages: true,
@@ -68,21 +66,7 @@ const ProjectIssues = async ({ params }: { params: { id: string } }) => {
             New
           </LinkButton>
         </section>
-        <Card>
-          {
-            issues.length > 0 ?
-            issues.map((issue) => (
-              <IssueCard key={issue.id} issue={ issue } owner={ issue.owner.name } messages={ issue.messages.length } />
-            ))
-            :
-            <>
-              <div className='text-center p-4'>
-                <h1 className='text-xl'>Welcome to issues!</h1>
-                <p className='text-neutral-700 dark:text-neutral-300'>Here you can find all the issues related to this project.</p>
-              </div>
-            </>
-          }
-        </Card>
+        <IssuesView issues={ issues } />
         <Footer className='mt-4 w-full text-center' />
       </main>
     </>
