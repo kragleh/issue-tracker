@@ -3,6 +3,7 @@ import Footer from '@/components/nav/Footer'
 import ProjectHeader from '@/components/project/nav/ProjectHeader'
 import ProjectTitle from '@/components/project/nav/ProjectTitle'
 import DescriptionForm from '@/components/project/settings/form/DescriptionForm'
+import ProjectIconForm from '@/components/project/settings/form/ProjectIconForm'
 import TitleForm from '@/components/project/settings/form/TitleForm'
 import LinkButton from '@/components/ui/LinkButton'
 import { db } from '@/lib/db'
@@ -53,6 +54,7 @@ const ProjectSettingsPage = async ({ params }: { params: { id: string } }) => {
           <h1 className='text-2xl'>Settings</h1>
         </section>
         <div className='flex flex-col gap-4'>
+          <ProjectIconForm projectId={ params.id } icon={ project.icon } />
           <TitleForm projectId={ params.id } title={ project.title } />
           <DescriptionForm projectId={ params.id } description={ project.description } />
         </div>

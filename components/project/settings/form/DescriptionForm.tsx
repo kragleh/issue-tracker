@@ -41,7 +41,7 @@ const DescriptionForm = ({ projectId, description }: { projectId: string, descri
       '>{ error }</p> : <></> }
       <div className='flex flex-col gap-2'>
         <MDEditor value={ value } onChange={ content => setValue(content || '') } />
-        <Button onCLick={ handleSave } variant={ ButtonVariant.SUCCESS } className='px-2' disabled={ done }>
+        <Button onClick={ handleSave } variant={ ButtonVariant.SUCCESS } className='px-2' disabled={ done }>
           { done ? 'Saved' : 'Save' }
         </Button>
       </div>

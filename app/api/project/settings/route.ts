@@ -7,6 +7,7 @@ const bodySchema = z.object({
   projectId: z.string().min(20).max(32),
   title: z.string().optional(),
   description: z.string().optional(),
+  icon: z.string().optional(),
 })
 
 export const POST = async (request: Request) => {
@@ -58,6 +59,19 @@ export const POST = async (request: Request) => {
       },
       data: {
         description: body.description
+      }
+    })
+  }
+
+  if (body.icon) {
+    if (!body.icon) return Response.json({ message: 'No icon provided' }, { status: 400 })
+
+    await db.project.update({
+      where: {
+        id: project.id
+      },
+      data: {
+        icon: body.icon
       }
     })
   }

@@ -1,4 +1,4 @@
-import ProjectPicture from '@/components/misc/ProjectPicture'
+import ProjectPicture from '@/components/ui/ProjectPicture'
 import { Project } from '@prisma/client'
 import Link from 'next/link'
 import React from 'react'

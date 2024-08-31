@@ -3,7 +3,7 @@ import React from 'react'
 import SidebarGroup from '../SidebarGroup'
 import SidebarButton from '../SidebarButton'
 import { FaPlus } from 'react-icons/fa'
-import ProjectPicture from '@/components/misc/ProjectPicture'
+import ProjectPicture from '@/components/ui/ProjectPicture'
 
 const ProjectsSidebarGroup = ({ projects }: { projects: Project[] }) => {
   return (

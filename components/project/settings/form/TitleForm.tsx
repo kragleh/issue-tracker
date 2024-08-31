@@ -41,7 +41,7 @@ const TitleForm = ({ projectId, title }: { projectId: string, title: string }) =
       '>{ error }</p> : <></> }
       <div className='flex gap-2'>
         <TextInput id='title' placeholder={ title } onChange={ content => setValue(content) } />
-        <Button onCLick={ handleSave } variant={ ButtonVariant.SUCCESS } className='px-2' disabled={ done }>
+        <Button onClick={ handleSave } variant={ ButtonVariant.SUCCESS } className='px-2' disabled={ done }>
           { done ? 'Saved' : 'Save' }
         </Button>
       </div>

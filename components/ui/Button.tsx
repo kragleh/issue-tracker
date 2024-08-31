@@ -7,7 +7,7 @@ export enum ButtonVariant {
   WARNING
 }
 
-const Button = ({ children, className, onCLick, variant, disabled }: { children: React.ReactNode, className?: string, onCLick?: () => void, variant?: ButtonVariant, disabled?: boolean }) => {
+const Button = ({ children, className, onClick, variant, disabled }: { children: React.ReactNode, className?: string, onClick?: () => void, variant?: ButtonVariant, disabled?: boolean }) => {
   if (disabled) {
     className += ' opacity-50 cursor-not-allowed'
 
@@ -33,7 +33,7 @@ const Button = ({ children, className, onCLick, variant, disabled }: { children:
   }
 
   return (
-    <button className={`text-neutral-700 dark:text-neutral-300 duration-200 text-center py-1 rounded ` + className} onClick={ disabled ? undefined : onCLick }>
+    <button className={`text-neutral-700 dark:text-neutral-300 duration-200 text-center py-1 rounded ` + className} onClick={ disabled ? undefined : onClick }>
       { children }
     </button>
   )

@@ -1,5 +1,5 @@
 import { db } from '@/lib/db'
-import { IssueMessage, IssueMessageType } from '@prisma/client'
+import { IssueMessageType, type IssueMessage } from '@prisma/client'
 import React from 'react'
 import Card from './Card'
 import ProfilePicture from './ProfilePicture'

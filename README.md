@@ -88,19 +88,23 @@ To add a new sign in provider, head [here](https://authjs.dev/getting-started/au
 ## 📋 TODO
 
 Project features
-  - [ ] Project page
-  - [ ] Project issues
-    - [ ] View issues
-    - [ ] Create issues
-  - [ ] Project roles
-  - [ ] Project settings
+  - [x] Project page
+    - [ ] Add more data
+    - [ ] Cleanup code
+  - [x] Project issues
+  - [ ] Moderate members
+  - [x] Project settings
   - [x] View project issues
+  - [ ] Project invites
+  - [ ] Project roles
 
 Issue features
   - [x] Create issue
-  - [ ] View issue
-  - [ ] Add messages
+  - [x] View issue
+  - [x] Add messages
   - [ ] Manage issue
+  - [ ] Moderate issue
+  - [ ] Moderate messages
 
 Admin features
   - [ ] Dashboard page

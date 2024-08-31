@@ -56,7 +56,7 @@ const NewProjectIssueForm = ({ projectId }: { projectId: string }) => {
           onChange={ setContent }
         />
       </section>
-      <Button onCLick={() => { onSubmit() }} variant={ ButtonVariant.SUCCESS }>
+      <Button onClick={() => { onSubmit() }} variant={ ButtonVariant.SUCCESS }>
         Submit
       </Button>
       <Footer className='mt-4 w-full text-center' />

@@ -28,7 +28,7 @@ const MembersView = ({ members, moderator }: { members: User[], moderator: boole
       const buttonBuffer: JSX.Element[] = []
       for (let i = 1; i <= newPages; i++) {
         buttonBuffer.push(
-          <Button key={i} onCLick={() => setPage(i)} className='px-2'>
+          <Button key={i} onClick={() => setPage(i)} className='px-2'>
             {i}
           </Button>
         )
@@ -47,10 +47,10 @@ const MembersView = ({ members, moderator }: { members: User[], moderator: boole
     <Card>
       <div className='p-3 border-b border-neutral-200 dark:border-neutral-700 flex justify-between items-center'>
         <div className='flex gap-2'>
-          <Button onCLick={ filterLatest } className='px-2'>
+          <Button onClick={ filterLatest } className='px-2'>
             Latest
           </Button>
-          <Button onCLick={ filterOldest } className='px-2'>
+          <Button onClick={ filterOldest } className='px-2'>
             Oldest
           </Button>
         </div> 

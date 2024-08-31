@@ -31,7 +31,7 @@ export const POST = async (request: Request) => {
   const project = await db.project.findFirst({ where: { id: body.projectId }, include: { members: true } })
 
   if (!project) return Response.json({ message: 'Project not found' }, { status: 400 })
-  if (project.members.find(member => member.id !== user.id)) return Response.json({ message: 'You are not a member of this project' }, { status: 400 })
+  if (project.members.every(member => member.id !== user.id)) return Response.json({ message: 'You are not a member of this project' }, { status: 400 })
 
   const issue = await db.issue.create({
     data: {

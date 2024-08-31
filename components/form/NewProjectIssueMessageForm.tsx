@@ -3,6 +3,7 @@ import React from 'react'
 import MDEditor from '@uiw/react-md-editor'
 import Footer from '../nav/Footer'
 import Button, { ButtonVariant } from '../ui/Button'
+import { set } from 'zod'
 
 const NewProjectIssueMessageForm = ({ projectId, issueId }: { projectId: string, issueId: string }) => {
   const [error, setError] = React.useState<string | undefined>(undefined)
@@ -21,7 +22,12 @@ const NewProjectIssueMessageForm = ({ projectId, issueId }: { projectId: string,
         content,
       })
     }).then(res => {
-      window.location.reload()
+      if (res.ok) {
+        window.location.reload()
+        return
+      }
+      
+      res.json().then(data => setError(data.message))
     }).catch(err => {
       console.log(err)
       setError(err.message)
@@ -43,7 +49,7 @@ const NewProjectIssueMessageForm = ({ projectId, issueId }: { projectId: string,
           onChange={ setContent }
         />
       </section>
-      <Button onCLick={() => { onSubmit() }} variant={ ButtonVariant.SUCCESS }>
+      <Button onClick={() => { onSubmit() }} variant={ ButtonVariant.SUCCESS }>
         Submit
       </Button>
       <Footer className='mt-4 w-full text-center' />

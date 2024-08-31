@@ -39,7 +39,7 @@ const IssuesView = ({ issues }: { issues: ExtendedIssue[] }) => {
       const buttonBuffer: JSX.Element[] = []
       for (let i = 1; i <= newPages; i++) {
         buttonBuffer.push(
-          <Button key={i} onCLick={() => setPage(i)} className='px-2'>
+          <Button key={i} onClick={() => setPage(i)} className='px-2'>
             {i}
           </Button>
         )
@@ -58,13 +58,13 @@ const IssuesView = ({ issues }: { issues: ExtendedIssue[] }) => {
     <Card>
       <div className='p-3 border-b border-neutral-200 dark:border-neutral-700 flex justify-between items-center'>
         <div className='flex gap-2'>
-          <Button onCLick={ filterOpened } className='px-2'>
+          <Button onClick={ filterOpened } className='px-2'>
             { issues.filter(issue => issue.opened).length } Opened
           </Button>
-          <Button onCLick={ filterClosed } className='px-2'>
+          <Button onClick={ filterClosed } className='px-2'>
             { issues.filter(issue => !issue.opened).length } Closed
           </Button>
-          <Button onCLick={ filterMix } className='px-2'>
+          <Button onClick={ filterMix } className='px-2'>
             { issues.length } All
           </Button>
         </div> 
