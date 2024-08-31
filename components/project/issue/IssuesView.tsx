@@ -1,9 +1,9 @@
 "use client"
 import { Issue, IssueMessage, Project, User } from '@prisma/client'
 import React, { useEffect } from 'react'
-import Card from '../ui/Card'
+import Card from '../../ui/Card'
 import IssueCard from './IssueCard'
-import Button from '../ui/Button'
+import Button from '../../ui/Button'
 
 type ExtendedIssue = Issue & {
   project: Project

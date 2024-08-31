@@ -28,7 +28,7 @@ const LoginPage = async ({ searchParams }: { searchParams: any }) => {
         <section className='flex flex-col gap-2'>
           {
             Object.values(providerMap).map((provider) => (
-              <form action={async () => {
+              <form key={ provider.id } action={async () => {
                   "use server"
                   try {
                     await signIn(provider.id, { redirectTo: redir })

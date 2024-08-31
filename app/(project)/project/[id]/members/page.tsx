@@ -1,36 +1,25 @@
 import { auth } from '@/auth'
-import IssuesView from '@/components/project/issue/IssuesView'
 import Footer from '@/components/nav/Footer'
+import MembersView from '@/components/project/members/MembersView'
 import ProjectHeader from '@/components/project/nav/ProjectHeader'
 import ProjectTitle from '@/components/project/nav/ProjectTitle'
-import LinkButton, { LinkButtonVariant } from '@/components/ui/LinkButton'
+import LinkButton from '@/components/ui/LinkButton'
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
-const ProjectIssues = async ({ params }: { params: { id: string } }) => {
+const MembersPage = async ({ params }: { params: { id: string } }) => {
   const session = await auth()
   const user = session?.user
+  let moderator = false
 
   if (!user) redirect('/login?r=/project/' + params.id + '/issues')
 
-  const project = await db.project.findUnique({ where: { id: params.id }, include: { owner: true } })
+  const project = await db.project.findUnique({ where: { id: params.id }, include: { owner: true, members: true } })
 
   if (!project) throw new Error('Project not found')
 
-  const issues = await db.issue.findMany({
-    include: {
-      project: true,
-      messages: true,
-      owner: true,
-    },
-    where: {
-      projectId: params.id,
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  })
+  if (project.owner.id === user.id) moderator = true
 
   return (
     <>
@@ -61,17 +50,13 @@ const ProjectIssues = async ({ params }: { params: { id: string } }) => {
 
       <main className='w-full max-w-4xl mx-auto p-4'>
         <section className='pb-4 flex justify-between items-center'>
-          <h1 className='text-2xl'>Issues</h1>
-          <LinkButton href={'/project/' + params.id + '/issues/new'} variant={ LinkButtonVariant.SUCCESS }>
-            New
-          </LinkButton>
+          <h1 className='text-2xl'>Members</h1>
         </section>
-        <IssuesView issues={ issues } />
+        <MembersView members={ project.members } moderator={ moderator } />
         <Footer className='mt-4 w-full text-center' />
       </main>
     </>
-    
   )
 }
 
-export default ProjectIssues
+export default MembersPage

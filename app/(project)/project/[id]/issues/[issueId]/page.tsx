@@ -52,7 +52,7 @@ const ProjectIssuePage = async ({ params }: { params: { id: string, issueId: str
             {/* TODO: Show link for corresponding roles */}
             {
               user.id === project.owner.id ? 
-                <LinkButton href={'/project/' + params.id + '/Settings'}>
+                <LinkButton href={'/project/' + params.id + '/settings'}>
                   Settings
                 </LinkButton>
               : <></>

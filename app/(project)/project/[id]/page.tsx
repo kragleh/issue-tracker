@@ -40,7 +40,7 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
             {/* TODO: Show link for corresponding roles */}
             {
               user.id === project.owner.id ? 
-                <LinkButton href={'/project/' + params.id + '/Settings'}>
+                <LinkButton href={'/project/' + params.id + '/settings'}>
                   Settings
                 </LinkButton>
               : <></>
@@ -50,7 +50,7 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
       } />
 
       <section className='max-w-4xl w-full mx-auto'>
-        <div className='m-4 grid grid-cols-1 lg:grid-cols-[70%_30%] gap-4'>
+        <div className='my-4 xl:mx-0 mx-4 grid grid-cols-1 lg:grid-cols-[70%_30%] gap-4'>
           <div>
             <ProjectDescription project={ project } />
           </div>
