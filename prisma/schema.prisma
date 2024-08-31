@@ -64,7 +64,6 @@ model User {
   issueMessages IssueMessage[]
   projectRoles  ProjectRole[]
 
-  starredProjects Project[] @relation(name: "projectStars")
   memberOf Project[] @relation(name: "projectmember")
   ownerOf Project[] @relation(name: "projectowner")
 
@@ -98,8 +97,6 @@ model Project {
   title       String
   description String
   icon        String?
-  public      Boolean  @default(false)
-  stars       User[]   @relation(name: "projectStars")
 
   ownerId     String
   owner User @relation(name: "projectowner", fields: [ownerId], references: [id], onDelete: Cascade)

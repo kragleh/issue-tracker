@@ -1,27 +1,22 @@
 import { auth } from '@/auth'
-import IssuesView from '@/components/project/issue/IssuesView'
 import Footer from '@/components/nav/Footer'
+import InvitesView from '@/components/project/invite/InvitesView'
 import LinkButton, { LinkButtonVariant } from '@/components/ui/LinkButton'
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
-const ProjectIssues = async ({ params }: { params: { id: string } }) => {
+const ProjectInvitesPage = async ({ params }: { params: { id: string } }) => {
   const session = await auth()
   const user = session?.user
 
-  if (!user) redirect('/signin?r=/project/' + params.id + '/issues')
+  if (!user) redirect('/signin?r=/project/' + params.id + '/invites')
 
   const project = await db.project.findUnique({ where: { id: params.id }, include: { owner: true } })
 
   if (!project) throw new Error('Project not found')
 
-  const issues = await db.issue.findMany({
-    include: {
-      project: true,
-      messages: true,
-      owner: true,
-    },
+  const invites = await db.projectInvite.findMany({
     where: {
       projectId: params.id,
     },
@@ -33,15 +28,15 @@ const ProjectIssues = async ({ params }: { params: { id: string } }) => {
   return (
     <main className='w-full max-w-4xl mx-auto p-4'>
       <section className='pb-4 flex justify-between items-center'>
-        <h1 className='text-2xl'>Issues</h1>
-        <LinkButton href={'/project/' + params.id + '/issues/new'} variant={ LinkButtonVariant.SUCCESS }>
+        <h1 className='text-2xl'>Invites</h1>
+        <LinkButton href={'/project/' + params.id + '/invites/new'} variant={ LinkButtonVariant.SUCCESS }>
           New
         </LinkButton>
       </section>
-      <IssuesView issues={ issues } />
+      <InvitesView invites={ invites } />
       <Footer className='mt-4 w-full text-center' />
     </main>
   )
 }
 
-export default ProjectIssues
+export default ProjectInvitesPage
