@@ -29,16 +29,16 @@ export const POST = async (request: Request) => {
     return Response.json({ message: 'Invalid request data' }, { status: 400 })
   }
 
-  const banUser = await db.user.findUnique({ where: { id: body.userId } })
-  if (!banUser) return Response.json({ message: 'Ban user not found' }, { status: 404 })
-  if (!banUser.banned) return Response.json({ message: 'This user is not banned' }, { status: 401 })
+  const unbanUser = await db.user.findUnique({ where: { id: body.userId } })
+  if (!unbanUser) return Response.json({ message: 'Unban user not found' }, { status: 404 })
+  if (!unbanUser.banned) return Response.json({ message: 'This user is not banned' }, { status: 401 })
 
   await db.user.update({
     where: {
       id: body.userId
     },
     data: {
-      banned: true
+      banned: false
     }
   })
 

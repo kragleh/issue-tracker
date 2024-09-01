@@ -23,9 +23,16 @@ const UserCard = ({ user }: { user: User }) => {
             Promote
           </LinkButton>
         }
-        <LinkButton href={'/admin/users/' + user.id + '/ban/'} variant={ LinkButtonVariant.DANGER } className='px-2'>
-          Ban
-        </LinkButton>
+        {
+          user.banned ?
+          <LinkButton href={'/admin/users/' + user.id + '/unban/'} variant={ LinkButtonVariant.DANGER } className='px-2'>
+            Unban
+          </LinkButton>
+          :
+          <LinkButton href={'/admin/users/' + user.id + '/ban/'} variant={ LinkButtonVariant.DANGER } className='px-2'>
+            Ban
+          </LinkButton>
+        }
       </div>
     </section>
   )
