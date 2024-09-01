@@ -95,7 +95,7 @@ Project features
   - [ ] Moderate members
   - [x] Project settings
   - [x] View project issues
-  - [ ] Project invites
+  - [x] Project invites
   - [ ] Project roles
 
 Issue features
@@ -110,8 +110,10 @@ Admin features
   - [ ] Dashboard page
   - [x] User page
     - [x] View users
-      - [ ] Add pagination
     - [ ] Manage users
+      - [x] Ban users
+      - [ ] Promote users
+      - [ ] Demote users
   - [ ] Projects page
     - [ ] View projects
     - [ ] Manage projects

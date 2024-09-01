@@ -59,6 +59,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   role          Role      @default(USER)
+  banned        Boolean   @default(false)
 
   issues        Issue[]
   issueMessages IssueMessage[]
