@@ -14,7 +14,7 @@ const InviteCard = ({ invite }: { invite: ProjectInvite }) => {
       <div className='flex gap-2 items-center'>
         <FaUsers size={ 16 } />
         <p>{ invite.uses }</p>
-        <LinkButton href={'/invite/' + invite.id + '/delete'} className='px-2' variant={ LinkButtonVariant.DANGER }>
+        <LinkButton href={'/delete/invite/' + invite.id} className='px-2' variant={ LinkButtonVariant.DANGER }>
           Delete
         </LinkButton>
       </div>
