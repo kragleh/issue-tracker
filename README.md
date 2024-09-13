@@ -96,7 +96,13 @@ Project features
   - [x] Project settings
   - [x] View project issues
   - [x] Project invites
-  - [ ] Project roles
+  - [ ] ~~Project roles~~ (Future consideration)
+  - [ ] Simple predefined member roles
+    - [ ] Owner - Full power, can delete project
+    - [ ] Admin - Full power, can edit and see everything
+    - [ ] Moderator - Can manage issues and moderate messages
+    - [ ] Developer - Can manage issues
+    - [ ] Member - Can create issues and interact with them
 
 Issue features
   - [x] Create issue
@@ -121,11 +127,12 @@ Admin features
       - [ ] Delete project
 
 Other
-  - [ ] Home page
+  - [x] Home page
   - [x] Issues page
   - [x] Profile page
   - [x] Theme switch
   - [x] Auth
+  - [ ] API Routes Optimization (Low Priority)
 
 ## 🤝 Contributing
 

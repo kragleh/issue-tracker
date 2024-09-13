@@ -1,10 +1,7 @@
 import Footer from '@/components/nav/Footer'
-import { db } from '@/lib/db'
 import React from 'react'
 
-const AdminProjectsPage = async () => {
-  const projects = await db.project.findMany({ take: 10 })
-
+const AdminProjectsPage = () => {
   return (
     <main className='w-full max-w-6xl mx-auto p-4'>
       <h1 className='text-2xl mb-4'>Projects</h1>
