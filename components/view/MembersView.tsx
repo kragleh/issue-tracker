@@ -3,9 +3,9 @@ import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 import { User } from '@prisma/client'
 import React, { useEffect } from 'react'
-import MemberCard from './MemberCard'
+import MemberCard from '../card/MemberCard'
 
-const MembersView = ({ members, moderator }: { members: User[], moderator: boolean }) => {
+const MembersView = ({ members, edit, remove, ban }: { members: User[], edit: boolean, remove: boolean, ban: boolean }) => {
   const ammount = 10
   const [page, setPage] = React.useState(1)
   const [filtered, setFiltered] = React.useState<User[]>(members)
@@ -61,7 +61,7 @@ const MembersView = ({ members, moderator }: { members: User[], moderator: boole
       {
         paginatedMembers.length > 0 ?
         paginatedMembers.map((member) => (
-          <MemberCard key={member.id} user={ member } moderator={ moderator } />
+          <MemberCard key={member.id} user={ member } edit={ edit } remove={ remove } ban={ ban } />
         ))
         :
         <>

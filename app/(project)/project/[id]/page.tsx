@@ -15,7 +15,7 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
   const project = await db.project.findUnique({ where: { id: params.id }, include: { members: true, owner: true } })
 
   if (!project) redirect('/')
-  if (!project.members.some(member => member.id === user.id)) redirect('/') // User is not a member of the project
+  if (!project.members.some(member => member.id === user.id)) redirect('/')
 
   return (
     <section className='max-w-4xl w-full mx-auto'>

@@ -32,9 +32,10 @@ const UserUnbanForm = ({ user }: { user: User }) => {
   return (
     <main className='w-full max-w-6xl mx-auto p-4'>
       <div className='flex justify-between items-center'>
-        <h1 className='text-2xl mb-4'>Unban User { user.name }</h1>
+        <h1 className='text-2xl'>Unban User { user.name }</h1>
         <BackButton />
       </div>
+      <p className='my-4'>Are you sure you want to unban <b>{ user.name }</b>?</p>
       { error ? <p className='
         bg-red-100 dark:bg-red-900 
         border border-red-300 dark:border-red-700 

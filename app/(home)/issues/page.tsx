@@ -3,7 +3,7 @@ import Footer from '@/components/nav/Footer'
 import { redirect } from 'next/navigation'
 import React from 'react'
 import { db } from '@/lib/db'
-import IssuesView from '@/components/project/issue/IssuesView'
+import IssuesView from '@/components/view/IssueView'
 
 const IssuesPage = async () => {
   const session = await auth()

@@ -10,7 +10,7 @@ const AdminLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth()
   const user = session?.user
 
-  if (!user) return (<>{ children }</>) // To let the page redirect itself
+  if (!user) return (<>{ children }</>)
 
   const projects = await db.project.findMany({ where: { members: { some: { id: user.id } } } })
   const userObj = await db.user.findUnique({ where: { id: user.id } })

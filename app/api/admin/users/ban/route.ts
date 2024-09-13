@@ -31,7 +31,7 @@ export const POST = async (request: Request) => {
 
   const banUser = await db.user.findUnique({ where: { id: body.userId } })
   if (!banUser) return Response.json({ message: 'Ban user not found' }, { status: 404 })
-  if (!banUser.banned) return Response.json({ message: 'This user is not banned' }, { status: 401 })
+  if (banUser.banned) return Response.json({ message: 'This user is banned' }, { status: 401 })
 
   await db.user.update({
     where: {

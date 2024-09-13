@@ -74,7 +74,7 @@ const ProjectIconForm = ({ projectId, icon }: { projectId: string, icon: string 
         w-full
         h-screen md:h-auto
       '>{ error }</p> : <></> }
-      <ProjectPicture project={ { id: projectId, title: projectId, ownerId: projectId, icon: value, createdAt: new Date(), description: '', public: false, updatedAt: new Date() } } size={ 128 } className='rounded-full' />
+      <ProjectPicture project={ { id: projectId, title: '', ownerId: projectId, icon: value, createdAt: new Date(), description: '', updatedAt: new Date() } } size={ 128 } className='rounded-full' />
       <div className='flex gap-2'>
         { done ? <></> : 
           <>

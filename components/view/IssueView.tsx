@@ -1,9 +1,9 @@
 "use client"
 import { Issue, IssueMessage, Project, User } from '@prisma/client'
 import React, { useEffect } from 'react'
-import Card from '../../ui/Card'
-import IssueCard from './IssueCard'
-import Button from '../../ui/Button'
+import Card from '../ui/Card'
+import IssueCard from '../card/IssueCard'
+import Button from '../ui/Button'
 
 type ExtendedIssue = Issue & {
   project: Project
@@ -11,7 +11,7 @@ type ExtendedIssue = Issue & {
   owner: User
 }
 
-const IssuesView = ({ issues }: { issues: ExtendedIssue[] }) => {
+const IssueView = ({ issues }: { issues: ExtendedIssue[] }) => {
   const ammount = 10
   const [page, setPage] = React.useState(1)
   const [filtered, setFiltered] = React.useState<ExtendedIssue[]>(issues)
@@ -81,7 +81,7 @@ const IssuesView = ({ issues }: { issues: ExtendedIssue[] }) => {
         <>
           <div className='text-center p-4'>
             <h1 className='text-xl'>Welcome to issues!</h1>
-            <p className='text-neutral-700 dark:text-neutral-300'>Here you can find all the issues you have interacted with.</p>
+            <p className='text-neutral-700 dark:text-neutral-300'>Here you can find all the related issues.</p>
           </div>
         </>
       }
@@ -89,4 +89,4 @@ const IssuesView = ({ issues }: { issues: ExtendedIssue[] }) => {
   )
 }
 
-export default IssuesView
+export default IssueView

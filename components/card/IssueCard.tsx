@@ -2,7 +2,7 @@ import { Issue } from '@prisma/client'
 import Link from 'next/link'
 import React from 'react'
 import { FaMessage } from 'react-icons/fa6'
-import IssueStatusIcon from '../../ui/IssueStatusIcon'
+import IssueStatusIcon from '../ui/IssueStatusIcon'
 
 const IssueCard = ({ issue, owner, messages }: { issue: Issue, owner: string | null, messages: number }) => {
   return (

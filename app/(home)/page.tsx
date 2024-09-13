@@ -6,9 +6,7 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 import { BsGithub } from 'react-icons/bs'
 import { FaProjectDiagram } from 'react-icons/fa'
-import { LuSunMoon } from 'react-icons/lu'
 import { MdChecklist } from 'react-icons/md'
-import { TbSunMoon } from 'react-icons/tb'
 
 const HomePage = async () => {
   const session = await auth()

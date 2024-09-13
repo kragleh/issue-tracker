@@ -1,5 +1,5 @@
 import { auth } from '@/auth'
-import IssuesView from '@/components/project/issue/IssuesView'
+import IssuesView from '@/components/view/IssueView'
 import Footer from '@/components/nav/Footer'
 import LinkButton, { LinkButtonVariant } from '@/components/ui/LinkButton'
 import { db } from '@/lib/db'

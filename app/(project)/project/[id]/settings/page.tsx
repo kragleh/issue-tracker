@@ -1,8 +1,8 @@
 import { auth } from '@/auth'
 import Footer from '@/components/nav/Footer'
-import DescriptionForm from '@/components/project/settings/form/DescriptionForm'
-import ProjectIconForm from '@/components/project/settings/form/ProjectIconForm'
-import TitleForm from '@/components/project/settings/form/TitleForm'
+import DescriptionForm from '@/components/project/settings/DescriptionForm'
+import ProjectIconForm from '@/components/project/settings/ProjectIconForm'
+import TitleForm from '@/components/project/settings/TitleForm'
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
 import React from 'react'
@@ -13,7 +13,7 @@ const ProjectSettingsPage = async ({ params }: { params: { id: string } }) => {
 
   if (!user) redirect('/signin?r=/project/' + params.id + '/settings')
 
-  const project = await db.project.findUnique({ where: { id: params.id }, include: { owner: true, members: true } })
+  const project = await db.project.findUnique({ where: { id: params.id }, include: { owner: true, members: true, projectRoles: true } })
 
   if (!project) throw new Error('Project not found')
 

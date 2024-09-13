@@ -15,7 +15,7 @@ export const POST = async (request: Request) => {
 
   const userObj = await db.user.findUnique({ where: { id: user.id } })
   if (!userObj) return Response.json({ message: 'User not found' }, { status: 404 })
-  if (userObj.role !== 'ADMIN') return Response.json({ message: 'You are not allowed to unban users' }, { status: 401 })
+  if (userObj.role !== 'ADMIN') return Response.json({ message: 'You are not allowed to promote users' }, { status: 401 })
 
   const body = await request.json()
 
@@ -29,16 +29,16 @@ export const POST = async (request: Request) => {
     return Response.json({ message: 'Invalid request data' }, { status: 400 })
   }
 
-  const unbanUser = await db.user.findUnique({ where: { id: body.userId } })
-  if (!unbanUser) return Response.json({ message: 'Unban user not found' }, { status: 404 })
-  if (!unbanUser.banned) return Response.json({ message: 'This user is not banned' }, { status: 401 })
+  const promoteUser = await db.user.findUnique({ where: { id: body.userId } })
+  if (!promoteUser) return Response.json({ message: 'Promote user not found' }, { status: 404 })
+  if (promoteUser.role === "ADMIN") return Response.json({ message: 'This user is already an admin' }, { status: 401 })
 
   await db.user.update({
     where: {
       id: body.userId
     },
     data: {
-      banned: false
+      role: "ADMIN"
     }
   })
 

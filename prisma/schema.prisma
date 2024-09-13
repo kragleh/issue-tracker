@@ -172,16 +172,31 @@ model ProjectRole {
   project   Project @relation(fields: [projectId], references: [id])
   User      User[]
   projectId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 // Role permission to manage role power
 enum RolePermission {
+  VIEW_ISSUES
+  VIEW_MEMBERS
+  VIEW_ROLES
+  VIEW_INVITES
+  
   CREATE_ISSUE
-  CREATE_TAG
+  CREATE_INVITE
+  CREATE_ROLE
+
   DELETE_ISSUE
-  DELETE_TAG
+  DELETE_INVITE
+  DELETE_ROLE
+  DELETE_MEMBER
+
   EDIT_ISSUE
-  EDIT_TAG
-  VIEW_ISSUE
-  VIEW_TAG
+  EDIT_MEMBER
+  EDIT_ROLE
+  EDIT_SETTINGS
+
+  BAN_MEMBER
 }
