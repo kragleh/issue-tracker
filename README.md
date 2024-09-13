@@ -107,19 +107,18 @@ Issue features
   - [ ] Moderate messages
 
 Admin features
-  - [ ] Dashboard page
+  - [ ] Dashboard page (Low Priority)
   - [x] User page
     - [x] View users
-    - [ ] Manage users
+    - [x] Manage users
       - [x] Ban users
-      - [ ] Promote users
-      - [ ] Demote users
-  - [ ] Projects page
+      - [x] Promote users
+      - [x] Demote users
+  - [ ] Projects page (Low Priority)
     - [ ] View projects
     - [ ] Manage projects
-  - [ ] Issues page
-    - [ ] View issues
-    - [ ] Manage issues
+      - [ ] Edit project (Low Priority)
+      - [ ] Delete project
 
 Other
   - [ ] Home page
