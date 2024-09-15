@@ -2,6 +2,7 @@ import { auth } from '@/auth'
 import FeatureCard from '@/components/home/FeatureCard'
 import Footer from '@/components/nav/Footer'
 import { LinkButtonVariant } from '@/components/ui/LinkButton'
+import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
 import React from 'react'
 import { BsGithub } from 'react-icons/bs'
@@ -13,6 +14,8 @@ const HomePage = async () => {
   const user = session?.user
 
   if (!user) redirect('/login?r=/')
+
+  await promoteFirstAdmin()
 
   return (
     <main className='w-full max-w-6xl mx-auto p-4 flex flex-col gap-4'>
@@ -42,6 +45,17 @@ const HomePage = async () => {
       <Footer className='text-center' />
     </main>
   )
+}
+
+// Promote first user to admin
+const promoteFirstAdmin = async () => {
+  const users = await db.user.findMany({ take: 2 })
+  if (users.length === 2 || users.length === 0) return
+  const user = users[0]
+  await db.user.update({
+    where: { id: user.id },
+    data: { role: 'ADMIN' }
+  })
 }
 
 export default HomePage

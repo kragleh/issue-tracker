@@ -12,6 +12,7 @@ const AdminUsersUnbanPage = async ({ params }: { params: { id: string } }) => {
 
   const unbanUser = await db.user.findUnique({ where: { id: params.id } })
   if (!unbanUser) throw new Error('User not found')
+  if (unbanUser.id === user.id) throw new Error('You cannot unban yourself')
   if (!unbanUser.banned) throw new Error('User is not banned')
 
   return (

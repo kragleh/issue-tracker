@@ -12,6 +12,7 @@ const AdminUsersDemotePage = async ({ params }: { params: { id: string } }) => {
 
   const demoteUser = await db.user.findUnique({ where: { id: params.id } })
   if (!demoteUser) throw new Error('User not found')
+  if (demoteUser.id === user.id) throw new Error('You cannot demote yourself')
   if (demoteUser.role === "USER") throw new Error('User is already demoted')
 
   return (

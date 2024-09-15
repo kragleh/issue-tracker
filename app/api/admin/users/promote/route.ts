@@ -15,6 +15,7 @@ export const POST = async (request: Request) => {
 
   const userObj = await db.user.findUnique({ where: { id: user.id } })
   if (!userObj) return Response.json({ message: 'User not found' }, { status: 404 })
+  if (userObj.id === user.id) return Response.json({ message: 'You cannot promote yourself' }, { status: 401 })
   if (userObj.role !== 'ADMIN') return Response.json({ message: 'You are not allowed to promote users' }, { status: 401 })
 
   const body = await request.json()

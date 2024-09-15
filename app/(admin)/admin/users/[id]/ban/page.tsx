@@ -12,6 +12,7 @@ const AdminUsersBanPage = async ({ params }: { params: { id: string } }) => {
 
   const banUser = await db.user.findUnique({ where: { id: params.id } })
   if (!banUser) throw new Error('User not found')
+  if (banUser.id === user.id) throw new Error('You cannot ban yourself')
   if (banUser.banned) throw new Error('User is already banned')
 
   return (

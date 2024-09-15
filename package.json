@@ -13,7 +13,7 @@
     "@prisma/client": "^5.18.0",
     "@uiw/react-md-editor": "^4.0.4",
     "marked": "^14.0.0",
-    "next": "14.2.5",
+    "next": "^14.2.11",
     "next-auth": "^5.0.0-beta.20",
     "next-themes": "^0.3.0",
     "react": "^18",

@@ -12,6 +12,7 @@ const AdminUsersPromotePage = async ({ params }: { params: { id: string } }) => 
 
   const promoteUser = await db.user.findUnique({ where: { id: params.id } })
   if (!promoteUser) throw new Error('User not found')
+  if (promoteUser.id === user.id) throw new Error('You cannot promote yourself')
   if (promoteUser.role === "ADMIN") throw new Error('User is already promoted')
 
   return (

@@ -161,13 +161,12 @@ enum IssueMessageType {
   SYSTEM
 }
 
-// Role used for managing projects in a team
+// Role used for managing permissions in a team
 model ProjectRole {
   id          String           @id @unique @default(cuid())
   name        String           @unique
   color       String           @unique
-  weight      Int              @default(0)
-  permissions RolePermission[]
+  permission  RolePermission
 
   project   Project @relation(fields: [projectId], references: [id])
   User      User[]
@@ -177,26 +176,10 @@ model ProjectRole {
   updatedAt DateTime @updatedAt
 }
 
-// Role permission to manage role power
 enum RolePermission {
-  VIEW_ISSUES
-  VIEW_MEMBERS
-  VIEW_ROLES
-  VIEW_INVITES
-  
-  CREATE_ISSUE
-  CREATE_INVITE
-  CREATE_ROLE
-
-  DELETE_ISSUE
-  DELETE_INVITE
-  DELETE_ROLE
-  DELETE_MEMBER
-
-  EDIT_ISSUE
-  EDIT_MEMBER
-  EDIT_ROLE
-  EDIT_SETTINGS
-
-  BAN_MEMBER
+  OWNER
+  ADMIN
+  MODERATOR
+  DEVELOPER
+  MEMBER
 }
