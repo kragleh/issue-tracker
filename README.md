@@ -98,9 +98,8 @@ Project features
   - [x] Project invites
   - [ ] ~~Project roles~~ (Future consideration)
   - [ ] Simple predefined member roles
-    - [ ] Owner - Full power, can delete project
     - [ ] Admin - Full power, can edit and see everything
-    - [ ] Moderator - Can manage issues and moderate messages
+    - [ ] Moderator - Can manage issues, members and moderate messages
     - [ ] Developer - Can manage issues
     - [ ] Member - Can create issues and interact with them
 

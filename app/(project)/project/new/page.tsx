@@ -1,5 +1,5 @@
 import { auth } from '@/auth'
-import NewProjectForm from '@/components/form/NewProjectForm'
+import NewProjectForm from '@/components/project/new/NewProjectForm'
 import { redirect } from 'next/navigation'
 import React from 'react'
 

@@ -177,7 +177,6 @@ model ProjectRole {
 }
 
 enum RolePermission {
-  OWNER
   ADMIN
   MODERATOR
   DEVELOPER
