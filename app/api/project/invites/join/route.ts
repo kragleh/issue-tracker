@@ -34,6 +34,20 @@ export const POST = async (request: Request) => {
   if (!project) return Response.json({ message: 'Project not found' }, { status: 400 })
   if (project.members.every(member => member.id === user.id)) return Response.json({ message: 'You are a member of this project' }, { status: 400 })
 
+  await db.projectRole.update({
+    where: {
+      //@ts-ignore - TODO: Not sure how to fix this
+      id: project.defaultRoleId
+    },
+    data: {
+      users: {
+        connect: {
+          id: user.id
+        }
+      }
+    }
+  })
+
   await db.project.update({
     where: { id: project.id },
     data: {

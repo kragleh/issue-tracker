@@ -31,6 +31,29 @@ export const POST = async (request: Request) => {
       ownerId: user.id,
       title: body.title,
       description: body.description,
+
+    }
+  })
+
+  const defaultRole = await db.projectRole.create({
+    data: {
+      name: 'Member',
+      projectId: project.id,
+      color: '99aab5',
+      permission: 'MEMBER',
+    }
+  })
+
+  await db.projectRole.update({
+    where: {
+      id: defaultRole.id
+    },
+    data: {
+      users: {
+        connect: {
+          id: user.id
+        }
+      }
     }
   })
 
@@ -39,6 +62,7 @@ export const POST = async (request: Request) => {
       id: project.id
     },
     data: {
+      defaultRoleId: defaultRole.id,
       members: {
         connect: {
           id: user.id

@@ -99,11 +99,14 @@ model Project {
   description String
   icon        String?
 
+  defaultRoleId String?
+  defaultRole ProjectRole? @relation(name: "projectDefaultRole", fields: [defaultRoleId], references: [id])
+  
   ownerId     String
   owner User @relation(name: "projectowner", fields: [ownerId], references: [id], onDelete: Cascade)
 
   projectInivites ProjectInvite[]
-  projectRoles ProjectRole[]
+  projectRoles ProjectRole[] @relation(name: "roleproject")
   members     User[] @relation(name: "projectmember")
   tags        Tag[]
   issues Issue[]
@@ -164,16 +167,18 @@ enum IssueMessageType {
 // Role used for managing permissions in a team
 model ProjectRole {
   id          String           @id @unique @default(cuid())
-  name        String           @unique
-  color       String           @unique
+  name        String           
+  color       String           
   permission  RolePermission
 
-  project   Project @relation(fields: [projectId], references: [id])
-  User      User[]
+  project   Project @relation(name: "roleproject", fields: [projectId], references: [id])
+  users     User[]
   projectId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  defaultRoleProjects Project[] @relation(name: "projectDefaultRole")
 }
 
 enum RolePermission {

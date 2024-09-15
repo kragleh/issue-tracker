@@ -1,8 +1,6 @@
 import { auth } from '@/auth'
 import Footer from '@/components/nav/Footer'
 import MembersView from '@/components/view/MembersView'
-import { hasPermissionInRoles } from '@/lib/PermUtil'
-import { RolePermissions } from '@/lib/RolePermissions'
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
 import React from 'react'
